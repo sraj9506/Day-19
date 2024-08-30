@@ -1,0 +1,8 @@
+---
+- name: Deploying Multi Tier Web App
+  hosts: frontend
+  become: yes
+  roles:
+    - nginx
+
+

@@ -1,2 +1,13 @@
 ---
-# tasks file for roles/nodejs
+# tasks file for roles/appserver
+- name: Install Node.js
+  apt:
+    name: nodejs
+    state: present
+    update_cache: yes
+
+- name: Ensure npm is installed
+  apt:
+    name: npm
+    state: present
+

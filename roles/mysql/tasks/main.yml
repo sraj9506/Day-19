@@ -1,2 +1,23 @@
 ---
-# tasks file for roles/mysql
+# tasks file for roles/database
+- name: Install MySQL server
+  apt:
+    update_cache: yes
+    name: ['mysql-server','mysql-client','python3-mysqldb','libmysqlclient-dev']
+    state: present
+  become: yes
+
+- name: Start MySQL service
+  service:
+    name: mysql
+    state: started
+    enabled: true
+  become: yes
+
+- name: Create a MySQL user
+  mysql_user:
+    name: "{{msql_user}}"
+    password: "{{msql_password}}"
+    priv: '*.*:ALL'
+    host: '%'
+    state: present

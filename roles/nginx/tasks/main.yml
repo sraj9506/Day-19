@@ -1,2 +1,14 @@
 ---
-# tasks file for roles/nginx
+# tasks file for roles/webserver
+- name: Install Nginx
+  apt:
+    name: nginx
+    state: present
+  become: yes
+
+- name: Start Nginx service
+  service:
+    name: nginx
+    state: started
+    enabled: true
+  become: yes
